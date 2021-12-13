@@ -1,9 +1,12 @@
-import React from 'react';
-import {Button, Checkbox, Form, Input, Select,} from 'antd';
+import React,{useState} from 'react';
+import {Button, Checkbox, Form, Input, Select,Radio} from 'antd';
 import {Link, useNavigate} from "react-router-dom";
-
+import {useDispatch} from "react-redux";
+import axios from "axios";
+import {saveToken} from "../../redux/AuthenticateReducer";
 
 const { Option } = Select;
+
 
 
 
@@ -41,7 +44,16 @@ const tailFormItemLayout = {
 
 
 const RegistrationForm = () => {
+    const [value, setValue] = useState(1);
+
+    const onChange = e => {
+        console.log('radio checked', e.target.value);
+        setValue(e.target.value);
+    };
+
+    const [user,steUser] = useState({email:'',password:''});
     const navigate= useNavigate();
+    const  dispatch = useDispatch();
 
     function registerClick(){
         navigate('/home');
@@ -53,6 +65,20 @@ const RegistrationForm = () => {
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
     };
+
+    const login=(user)=>{
+        axios.post("http://localhost:8080/register",user)
+            .then(res =>{
+                console.log(res);
+                if(res.status===200){
+                    dispatch(saveToken(res.data));
+                    navigate('/dashboard');
+                } else{
+                    console.log("eror")
+                }
+            }).catch(e => console.log("error"));
+    }
+
 
     return (
         <Form
@@ -119,6 +145,19 @@ const RegistrationForm = () => {
             >
                 <Input.Password />
             </Form.Item>
+            <Form.Item name="user-type"
+                       label="Register As: "
+                       rules={[
+                               {
+                                   required: true,
+                                   message: 'Please select the registration type!',
+                               }]}>
+                <Radio.Group onChange={onChange} value={value}>
+                    <Radio value={1}>Buyer</Radio>
+                    <Radio value={2}>Seller</Radio>
+
+                </Radio.Group>
+            </Form.Item>
 
             <Form.Item
                 name="agreement"
@@ -140,6 +179,8 @@ const RegistrationForm = () => {
                     Register
                 </Button>
             </Form.Item>
+
+
         </Form>
     );
 };
