@@ -27,12 +27,12 @@ const BuyNav = () => {
                 </Menu.Item>
                 <Menu.Item key="3">
                     <NavLink to="/cart">
-                        <span>View Cart</span>
+                        <span>My Cart</span>
                     </NavLink>
                 </Menu.Item>
                 <Menu.Item key="4">
                     <NavLink to="/orders">
-                        <span>View Orders</span>
+                        <span>My Orders</span>
                     </NavLink>
                 </Menu.Item>
 
