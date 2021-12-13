@@ -10,6 +10,7 @@ import Payment from "./view/payment/Payment";
 import Order from "./view/order/Order";
 import ApproveSeller from "./view/approve-seller/ApproveSeller";
 import ApproveReview from "./view/approve-review/ApproveReview";
+import MyCart from "./view/my-cart/MyCart";
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
               <Route path = "/item/:id" element={<Item/>}/>
               {/*assuming id will be passed with token*/}
               <Route path = "/logout" element={<Logout/>}/>
-              {/*<Route path = "/cart" element={<Cart/>}/>*/}
+              <Route path = "/cart" element={<MyCart/>}/>
               {/*<Route path = "/item" element={<Product/>}/>*/}
               <Route path = "/profile" element={<Profile/>}/>
               <Route path = "/user-info" element={<Profile/>}/>
