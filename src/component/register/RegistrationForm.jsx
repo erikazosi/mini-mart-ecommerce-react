@@ -3,7 +3,6 @@ import {Button, Checkbox, Form, Input, Select, Radio, Row, Col} from 'antd';
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import axios from "axios";
-import {saveToken} from "../../redux/AuthenticateReducer";
 
 const { Option } = Select;
 
@@ -75,9 +74,9 @@ const RegistrationForm = () => {
     const regist=(user,userType)=>{
         //seller
         if(userType===2){
-            axios.post("http://localhost:8080/users/seller",user)
+            axios.post("http://localhost:8080/user/seller",user)
                 .then(res =>{
-                    res.header({"Access-Control-Allow-Origin": "*"});
+                    // res.header({"Access-Control-Allow-Origin": "*"});
                     console.log(res);
                     if(res.status===200){
                         navigate('/dashboard');
@@ -86,7 +85,7 @@ const RegistrationForm = () => {
                     }
                 }).catch(e => console.log("error"));
         }else{
-            axios.post("http://localhost:8080/users/buyer",user)
+            axios.post("http://localhost:8080/user/buyer",user)
                 .then(res =>{
                     console.log(res);
                     if(res.status===200){
