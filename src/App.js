@@ -6,11 +6,11 @@ import Login from "./view/login/Login";
 import Item from "./view/item/Item";
 import Logout from "./component/logout/Logout";
 import Profile from "./view/profile/Profile";
-import Payment from "./view/payment/Payment";
-import Order from "./view/order/Order";
-import ApproveSeller from "./view/approve-seller/ApproveSeller";
-import ApproveReview from "./view/approve-review/ApproveReview";
-import MyCart from "./view/my-cart/MyCart";
+import Payment from "./view/buyer/payment/Payment";
+import Order from "./view/buyer/order/Order";
+import ApproveSeller from "./view/admin/approve-seller/ApproveSeller";
+import ApproveReview from "./view/admin/approve-review/ApproveReview";
+import MyCart from "./view/buyer/my-cart/MyCart";
 
 function App() {
     return (

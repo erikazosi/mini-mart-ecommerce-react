@@ -1,9 +1,9 @@
 import React from "react";
 import {Layout} from "antd";
 import './style.css';
-import ItemList from "../../component/item-list/ItemList.jsx";
-import FooterInd from "../../component/footer/FooterInd.jsx";
-import NavBar from "../../component/navbar/NavBar";
+import ItemList from "../../../component/item-list/ItemList.jsx";
+import FooterInd from "../../../component/footer/FooterInd.jsx";
+import NavBar from "../../../component/navbar/NavBar";
 
 const { Content } = Layout;
 

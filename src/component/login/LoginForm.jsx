@@ -16,7 +16,7 @@ const LoginForm = () => {
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
      // console.log(values.username + " " + values.password);
-     let userD = {username: values.username, password: values.password};
+        let userD = {username: values.username, password: values.password};
         setUser(userD);
         console.log(userD)
         login(userD);

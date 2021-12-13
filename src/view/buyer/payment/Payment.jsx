@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import NavBar from "../../component/navbar/NavBar";
-import SideBar from "../../component/sidebar/SideBar";
+import NavBar from "../../../component/navbar/NavBar";
+import SideBar from "../../../component/sidebar/SideBar";
 import {Button, DatePicker, Form, Input, Space} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
@@ -51,9 +51,9 @@ const Payment = () => {
                     >
                         <Input
                             prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
+                            type="text"
                             disabled
-                            placeholder="Password"
+                            placeholder="Name on Card"
                         />
                     </Form.Item>
                     <Form.Item

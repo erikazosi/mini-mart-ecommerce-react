@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import FooterInd from "../../component/footer/FooterInd.jsx";
-import NavBar from "../../component/navbar/NavBar";
+import FooterInd from "../../../component/footer/FooterInd.jsx";
+import NavBar from "../../../component/navbar/NavBar";
 import {Layout, Space, Table, Tag} from "antd";
 
 const { Content } = Layout;
