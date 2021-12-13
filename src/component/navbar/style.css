@@ -1,0 +1,33 @@
+.nav-bar-header{
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Logo */
+.nav-bar-header .logo{
+    height: 100%;
+}
+.nav-bar-header .logo img{
+    height: 100%;
+}
+
+/* Menu */
+.nav-bar-header .nav-bar-menu {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    background-color: #282c34;
+}
+
+.ant-menu-title-content span{
+    color: white;
+}
+
+#nav-bar{
+    position: fixed;
+
+}
