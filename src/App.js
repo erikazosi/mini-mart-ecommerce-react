@@ -7,6 +7,9 @@ import Item from "./view/item/Item";
 import Logout from "./component/logout/Logout";
 import Profile from "./view/profile/Profile";
 import Payment from "./view/payment/Payment";
+import Order from "./view/order/Order";
+import ApproveSeller from "./view/approve-seller/ApproveSeller";
+import ApproveReview from "./view/approve-review/ApproveReview";
 
 function App() {
     return (
@@ -25,9 +28,9 @@ function App() {
               <Route path = "/pay-info" element={<Payment/>}/>
               <Route path = "/shipping" element={<Profile/>}/>
               <Route path = "/billing" element={<Profile/>}/>
-              {/*<Route path = "/orders" element={<Orders/>}/>*/}
-              {/*<Route path = "/approve-sellers" element={<ApproveSeller/>}/>*/}
-              {/*<Route path = "/approve-reviews" element={<ApproveReview/>}/>*/}
+              <Route path = "/orders" element={<Order/>}/>
+              <Route path = "/approve-sellers" element={<ApproveSeller/>}/>
+              <Route path = "/approve-reviews" element={<ApproveReview/>}/>
 
 
           </Routes>

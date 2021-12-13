@@ -1,47 +1,42 @@
-import React, { useState } from 'react';
-import { Table, Radio, Divider } from 'antd';
-const columns = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        render: (text) => <a>{text}</a>,
-    },
-    {
-        title: 'Age',
-        dataIndex: 'age',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-    },
-];
+import React, {useState} from "react";
+import FooterInd from "../../component/footer/FooterInd.jsx";
+import NavBar from "../../component/navbar/NavBar";
+import {Layout, Space, Table, Tag} from "antd";
+
+const { Content } = Layout;
+
+const { Column, ColumnGroup } = Table;
 const data = [
     {
         key: '1',
-        name: 'John Brown',
-        age: 32,
+        firstName: 'John',
+        lastName: 'Brown',
         address: 'New York No. 1 Lake Park',
+        tags: ['SHIPMENT DELAYED'],
     },
     {
         key: '2',
-        name: 'Jim Green',
-        age: 42,
+        firstName: 'Jim',
+        lastName: 'Green',
         address: 'London No. 1 Lake Park',
+        tags: ['SHIPPED'],
     },
     {
         key: '3',
-        name: 'Joe Black',
-        age: 32,
+        firstName: 'Joe',
+        lastName: 'Black',
         address: 'Sidney No. 1 Lake Park',
+        tags: ['DELIVERED'],
     },
-    {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
-    },
-]; // rowSelection object indicates the need for row selection
-
+];
+const colorCode = (tag) => {
+    if(tag === 'SHIPPED')
+        return 'blue';
+    else if(tag === 'DELIVERED')
+        return 'green';
+    else
+        return 'red';
+};
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
         console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -54,31 +49,40 @@ const rowSelection = {
 };
 
 const Order = () => {
+
+
     const [selectionType, setSelectionType] = useState('checkbox');
     return (
-        <div>
-            <Radio.Group
-                onChange={({ target: { value } }) => {
-                    setSelectionType(value);
-                }}
-                value={selectionType}
-            >
-                <Radio value="checkbox">Checkbox</Radio>
-                <Radio value="radio">radio</Radio>
-            </Radio.Group>
+        <Layout>
+            <NavBar/>
 
-            <Divider />
-
-            <Table
-                rowSelection={{
-                    type: selectionType,
-                    ...rowSelection,
-                }}
-                columns={columns}
-                dataSource={data}
-            />
-        </div>
-    );
+            <Content className="main-body">
+                <Table dataSource={data}>
+                    <ColumnGroup title="Product">
+                        <Column title="Product Name" dataIndex="prdName" key="firstName" />
+                        <Column title="Product Description" dataIndex="lastName" key="lastName" />
+                    </ColumnGroup>
+                    <Column title="Address" dataIndex="address" key="address" />
+                    <Column
+                        title="Status"
+                        dataIndex="tags"
+                        key="tags"
+                        render={tags => (
+                            <>
+                                {tags.map(tag => (
+                                    <Tag color={colorCode(tag)} key={tag}>
+                                        {tag}
+                                    </Tag>
+                                ))}
+                            </>
+                        )}
+                    />
+                </Table>
+            </Content>
+            <FooterInd/>
+        </Layout>
+    )
 };
+Order.propTypes = {}
 
 export default Order;
