@@ -1,0 +1,9 @@
+#sidebar,#info,#payment{
+ padding-top:60px
+}
+
+#payment{
+ font-weight: bold;
+}
+
+

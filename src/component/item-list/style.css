@@ -1,0 +1,15 @@
+.item-list-div{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+
+/* ----- ItemCard ------- */
+.item-card-div{
+    width: 260px;
+    margin: 15px !important;
+    padding: 3px !important;
+    border-color: #e7e7e7 !important;
+}

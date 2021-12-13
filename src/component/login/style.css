@@ -1,0 +1,10 @@
+.login-div{
+    border: 1px solid #e7e7e7;
+    margin: 20px 0;
+    padding: 40px;
+}
+
+.login-form{
+    width: 60%;
+    margin: auto !important;
+}
