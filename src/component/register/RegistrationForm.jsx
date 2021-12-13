@@ -1,14 +1,11 @@
 import React,{useState} from 'react';
-import {Button, Checkbox, Form, Input, Select,Radio} from 'antd';
+import {Button, Checkbox, Form, Input, Select, Radio, Row, Col} from 'antd';
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import axios from "axios";
 import {saveToken} from "../../redux/AuthenticateReducer";
 
 const { Option } = Select;
-
-
-
 
 const formItemLayout = {
     labelCol: {
@@ -51,7 +48,7 @@ const RegistrationForm = () => {
         setValue(e.target.value);
     };
 
-    const [user,steUser] = useState({email:'',password:''});
+    const [user,steUser] = useState({firstname:'',middlename:'',lastname:'',email:'',password:''});
     const navigate= useNavigate();
     const  dispatch = useDispatch();
 
@@ -62,21 +59,44 @@ const RegistrationForm = () => {
 
     const [form] = Form.useForm();
 
+    const userType=0;
+
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
+
+        let regisUser={firstname:values.firstname,
+                        middlename: values.middlename,
+                        lastname: values.lastname,
+                        email:values.email,
+                        password:values.password};
+        regist(regisUser,values.userType);
     };
 
-    const login=(user)=>{
-        axios.post("http://localhost:8080/register",user)
-            .then(res =>{
-                console.log(res);
-                if(res.status===200){
-                    dispatch(saveToken(res.data));
-                    navigate('/dashboard');
-                } else{
-                    console.log("eror")
-                }
-            }).catch(e => console.log("error"));
+    const regist=(user,userType)=>{
+        //seller
+        if(userType===2){
+            axios.post("http://localhost:8080/users/seller",user)
+                .then(res =>{
+                    res.header({"Access-Control-Allow-Origin": "*"});
+                    console.log(res);
+                    if(res.status===200){
+                        navigate('/dashboard');
+                    } else{
+                        console.log("error")
+                    }
+                }).catch(e => console.log("error"));
+        }else{
+            axios.post("http://localhost:8080/users/buyer",user)
+                .then(res =>{
+                    console.log(res);
+                    if(res.status===200){
+                        navigate('/dashboard');
+                    } else{
+                        console.log("error")
+                    }
+                }).catch(e => console.log("error"));
+        }
+
     }
 
 
@@ -91,6 +111,44 @@ const RegistrationForm = () => {
             }}
             scrollToFirstError
         >
+            <Form.Item
+                name="firstname"
+                label="First Name"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your First Name!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                name="middlename"
+                label="Middle Name"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your Middle Name!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+
+            <Form.Item
+                name="lastname"
+                label="Last Name"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your Last Name!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+
             <Form.Item
                 name="email"
                 label="E-mail"
@@ -145,7 +203,7 @@ const RegistrationForm = () => {
             >
                 <Input.Password />
             </Form.Item>
-            <Form.Item name="user-type"
+            <Form.Item name="userType"
                        label="Register As: "
                        rules={[
                                {
@@ -175,7 +233,7 @@ const RegistrationForm = () => {
                 </Checkbox>
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-                <Button type="primary" htmlType="submit" onClick="registerClick">
+                <Button type="primary" htmlType="submit" onClick={regist}>
                     Register
                 </Button>
             </Form.Item>
