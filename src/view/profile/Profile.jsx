@@ -8,6 +8,9 @@ import {Link} from "react-router-dom";
 
 
 const Profile = () => {
+    const onFinish = (values) =>{
+
+    }
     return (
         <>
             <NavBar></NavBar>
@@ -24,7 +27,52 @@ const Profile = () => {
                     // onFinish={onFinish}
                 >
                     <Form.Item
+                        name="firstname"
+                        label ="First Name"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your First Name!',
+                            },
+                        ]}
+                    >
+                        <Input                         placeholder="First Name"
+                        />
+                    </Form.Item>
+                    <Form.Item
+                        name="middlename"
+                        label ="Middle Name"
+
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your Middle Name!',
+                            },
+                        ]}
+                    >
+                        <Input                         placeholder="Middle Name"
+                        />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="lastname"
+                        label ="Last Name"
+
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your Last Name!',
+                            },
+                        ]}
+                    >
+                        <Input placeholder="Last Name"
+                        />
+                    </Form.Item>
+
+                    <Form.Item
                         name="email"
+                        label ="Email"
+
                         rules={[
                             {
                                 required: true,
@@ -37,6 +85,8 @@ const Profile = () => {
                     </Form.Item>
                     <Form.Item
                         name="password"
+                        label ="Password"
+
                         rules={[
                             {
                                 required: true,
