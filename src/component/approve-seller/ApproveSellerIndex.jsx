@@ -93,7 +93,7 @@ const ApproveSellerIndex = () => {
         if(authenticate.token === '' || authenticate.roles[0] !== 'ADMIN')
             navigate('/');
         fetchSellers();
-    });
+    }, []);
 
     return (
         <>
