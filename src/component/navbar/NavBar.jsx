@@ -1,22 +1,37 @@
 import React from 'react';
-import {Layout, Menu} from 'antd';
+import {Layout} from 'antd';
 import './style.css';
-import {Link, NavLink} from "react-router-dom";
 import BuyNav from "./BuyNav";
 import SellerNav from "./SellerNav";
 import HomeNav from "./HomeNav";
 import AdminNav from "./AdminNav";
+import {useSelector} from "react-redux";
 
 const {Header} = Layout;
 
 const NavBar = () => {
+    const authenticatedData = useSelector(state => state.authenticate);
+
+    const navBarChoice = () => {
+        if(authenticatedData.roles !== undefined){
+            switch (authenticatedData.roles[0]){
+                case 'BUYER':
+                    return <BuyNav/>;
+                case 'SELLER':
+                    return <SellerNav/>;
+                case 'ADMIN':
+                    return <AdminNav/>;
+                default:
+                    return <HomeNav/>;
+            }
+        }
+        else{
+            return <HomeNav/>;
+        }
+    }
     return (
-        //TODO if else for user role
         <div id="nav-bar">
-            <BuyNav></BuyNav>
-            {/*<SellerNav></SellerNav>*/}
-            {/*<HomeNav></HomeNav>*/}
-            {/*<AdminNav></AdminNav>*/}
+            {navBarChoice()}
         </div>
     );
 };

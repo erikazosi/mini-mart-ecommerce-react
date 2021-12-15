@@ -1,24 +1,22 @@
 import React from 'react';
 import NavBar from "../../component/navbar/NavBar";
-import './style.css';
-import {Layout} from "antd";
 import FooterInd from "../../component/footer/FooterInd";
-import ProfileIndex from "../../component/profile/ProfileIndex";
+import {Layout} from "antd";
+import ApproveSellerIndex from "../../component/approve-seller/ApproveSellerIndex";
 
 const { Content } = Layout;
 
-const Profile = () => {
+const ApproveSeller = () => {
     return (
         <Layout>
             <NavBar/>
 
             <Content className="main-body">
-                <ProfileIndex/>
+                <ApproveSellerIndex/>
             </Content>
             <FooterInd/>
         </Layout>
     );
-
 }
 
-export default Profile;
+export default ApproveSeller;

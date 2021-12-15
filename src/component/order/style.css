@@ -1,0 +1,9 @@
+.ant-table-row{
+    cursor: pointer;
+}
+.cancel-btn{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}

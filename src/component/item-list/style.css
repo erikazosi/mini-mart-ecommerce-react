@@ -1,6 +1,6 @@
 .item-list-div{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
@@ -12,4 +12,11 @@
     margin: 15px !important;
     padding: 3px !important;
     border-color: #e7e7e7 !important;
+    cursor: text;
+}
+.item-card-div:hover{
+    cursor: text !important;
+}
+.item-card-div img{
+    cursor: pointer !important;
 }
