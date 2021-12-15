@@ -1,19 +1,43 @@
 import React, {useState} from 'react';
-import {Button, Col, DatePicker, Descriptions, message, Spin} from "antd";
-
-const { RangePicker } = DatePicker;
+import {Button, Col, Descriptions, message, Spin} from "antd";
+import {SERVER_LOC} from "../../constant/Data";
+import {useNavigate} from "react-router-dom";
 
 const ItemDescription = (props) => {
+    const navigate = useNavigate();
     const [spin, setSpinning] = useState(false);
-    const [displayRentOption, setDisplayRentOption] = useState(false);
+    const isBuyer = props.authenticate.token!=='' && props.authenticate.roles[0]==='BUYER';
+    const [quantity, setQuantity] = useState(1);
 
-    const success = () => {
+    const addToCart = async () => {
         setSpinning(true);
-        setTimeout(() => {
-            message.success('Request Sent. The rentee will notify you about item.');
-            setSpinning(false);
-        }, 3000)
+        let cartinfo = {productId:props.data.id, userId: props.authenticate.userId, quantity: quantity};
+
+        let response = await fetch(SERVER_LOC+"/cart", {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + props.authenticate.token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(cartinfo)
+            }
+        );
+
+        let status = response.status;
+        let result = await response.json();
+
+        setSpinning(false);
+        if(status === 201){
+            message.success(result.message);
+        }
+        else{
+            message.error(result.message);
+        }
     };
+
+    const handleChange = (e) => {
+        setQuantity(e.target.value);
+    }
 
     return (
         <Col md={12}>
@@ -26,37 +50,36 @@ const ItemDescription = (props) => {
                                   size='middle'
                     >
                         <Descriptions.Item label="Name">{props.data.name}</Descriptions.Item>
+                        {isBuyer?<Descriptions.Item label="Quantity"><input onChange={handleChange} value={quantity}/></Descriptions.Item>:""}
+                        <Descriptions.Item label="In Stock">{props.data.stockQuantity>0?"Yes":"No"}</Descriptions.Item>
+                        {
+                            props.data.onSale?
+                                <>
+                                    <Descriptions.Item label="Actual Price">${props.data.actualPrice}</Descriptions.Item>
+                                    <Descriptions.Item label="Sale Price">${props.data.salePrice}</Descriptions.Item>
+                                </> :
+                                <>
+                                    <Descriptions.Item label="Price">${props.data.actualPrice}</Descriptions.Item>
+                                </>
+                        }
+                        <Descriptions.Item label="Highlights">{props.data.highlights}</Descriptions.Item>
                         <Descriptions.Item label="Description">{props.data.description}</Descriptions.Item>
                     </Descriptions>
 
-                    <div className="rent-it-option-div">
-                        <div className="rent-it-button">
-                            <Button type="primary"
-                                    size={'large'}
-                                    disabled={displayRentOption}
-                                    onClick={() => setDisplayRentOption(!displayRentOption)}
-                            >
-                                Rent it
-                            </Button>
-                        </div>
-
-                        {
-                            displayRentOption ?
-                                <div className='rent-it-option'>
-                                    <span><RangePicker /></span>
-                                    <span>
+                    {
+                        isBuyer?
+                            <div className="rent-it-option-div">
+                                <div className="rent-it-button">
                                     <Button type="primary"
                                             size={'large'}
-                                            disabled={!displayRentOption}
-                                            onClick={success}
+                                            onClick={addToCart}
                                     >
-                                    Submit Request
-                                </Button>
-                                </span>
+                                        Add to Cart
+                                    </Button>
                                 </div>
-                                : ''
-                        }
-                    </div>
+                            </div> :
+                            <p style={{marginTop: '10px', fontSize:'17px', color:'red'}}>Login as a Buyer to buy.</p>
+                    }
                 </div>
             </Spin>
         </Col>

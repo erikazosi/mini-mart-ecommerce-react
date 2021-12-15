@@ -1,24 +1,22 @@
 import React from 'react';
 import NavBar from "../../component/navbar/NavBar";
-import './style.css';
-import {Layout} from "antd";
 import FooterInd from "../../component/footer/FooterInd";
-import ProfileIndex from "../../component/profile/ProfileIndex";
+import {Layout} from "antd";
+import OrderIndex from "../../component/order/OrderIndex";
 
 const { Content } = Layout;
 
-const Profile = () => {
+const OrderHistory = () => {
     return (
         <Layout>
             <NavBar/>
 
             <Content className="main-body">
-                <ProfileIndex/>
+                <OrderIndex/>
             </Content>
             <FooterInd/>
         </Layout>
     );
+};
 
-}
-
-export default Profile;
+export default OrderHistory;

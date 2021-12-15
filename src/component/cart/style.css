@@ -1,0 +1,36 @@
+.cart-list-div{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+
+/* ----- ItemCard ------- */
+.cart-card-div{
+    width: 260px;
+    margin: 15px !important;
+    padding: 3px !important;
+    border-color: #e7e7e7 !important;
+    cursor: text !important;
+}
+.cart-card-div img{
+    cursor: pointer;
+}
+
+.checkout-btn{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.p-link{
+    color:blue;
+    text-decoration: underline;
+}
+.p-link:hover{
+    cursor: pointer;
+    color: skyblue;
+
+}

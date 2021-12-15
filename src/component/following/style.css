@@ -1,0 +1,13 @@
+.following-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.following-card{
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+.following-card button:hover{
+    cursor: pointer;
+}

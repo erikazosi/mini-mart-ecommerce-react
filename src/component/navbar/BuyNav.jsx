@@ -1,43 +1,47 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {Layout, Menu} from 'antd';
 import './style.css';
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const {Header} = Layout;
 
 const BuyNav = () => {
     return (
         <Header className="nav-bar-header">
-            <span className="logo">
-                <Link to="/">
-                    {/*<img src={logo} alt="Easy Rent"/>*/}
-                </Link>
-            </span>
             <Menu className="nav-bar-menu" theme="dark" mode="horizontal">
+                <Menu.Item className="disabled-menu" key="app" disabled>
+                    You are Buyer
+                </Menu.Item>
                 <Menu.Item key="1">
                     <NavLink to="/">
                         <span>Home</span>
                     </NavLink>
                 </Menu.Item>
-
-                <Menu.Item key="2">
-                    <NavLink to="/cart">
-                        <span>My Cart</span>
-                    </NavLink>
-                </Menu.Item>
                 <Menu.Item key="3">
-                    <NavLink to="/orders">
-                        <span>My Orders</span>
+                    <NavLink to="/cart">
+                        <span>View Cart</span>
+                    </NavLink>
+                </Menu.Item>
+                <Menu.Item key="4">
+                    <NavLink to="/order-history">
+                        <span>View Orders</span>
                     </NavLink>
                 </Menu.Item>
 
-                <Menu.Item key="4">
+                <Menu.Item key="5">
                     <NavLink to="/profile">
                         <span>My Profile</span>
                     </NavLink>
                 </Menu.Item>
-                <Menu.Item key="5">
+
+                <Menu.Item key="6">
+                    <NavLink to="/following">
+                        <span>Following</span>
+                    </NavLink>
+                </Menu.Item>
+
+                <Menu.Item key="7">
                     <NavLink to="/logout">
                         <span>Logout</span>
                     </NavLink>
