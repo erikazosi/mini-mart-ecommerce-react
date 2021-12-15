@@ -8,5 +8,5 @@
 }
 
 .long-vertical-height{
-  height: 80vh;
+  min-height: 80%;
 }
