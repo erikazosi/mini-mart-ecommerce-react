@@ -1,1 +1,1 @@
-export const SERVER_LOC = "http://db2a-209-152-96-166.ngrok.io";
+export const SERVER_LOC = "http://localhost:8080";
